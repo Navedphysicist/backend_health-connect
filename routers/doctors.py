@@ -27,7 +27,7 @@ async def get_doctors_by_department(
         for doctor in all_doctors:
             if doctor.speciality and "title" in doctor.speciality:
                 speciality_title = doctor.speciality["title"].replace(" ", "").lower()
-                department_cleaned = department_name.replace(" ", "").lower()
+                department_cleaned = department_name.replace("%20", "").lower()
 
                 if speciality_title == department_cleaned:
                     matching_doctors.append(doctor)
