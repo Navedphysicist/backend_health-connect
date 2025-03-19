@@ -26,8 +26,12 @@ async def get_doctors_by_department(
         matching_doctors = []
         for doctor in all_doctors:
             if doctor.speciality and "title" in doctor.speciality:
-                if doctor.speciality["title"].lower() == department_name.lower():
+                speciality_title = doctor.speciality["title"].replace(" ", "").lower()
+                department_cleaned = department_name.replace(" ", "").lower()
+
+                if speciality_title == department_cleaned:
                     matching_doctors.append(doctor)
+
 
         if not matching_doctors:
             raise HTTPException(
